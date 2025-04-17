@@ -3,6 +3,22 @@ import type { AppProps } from "next/app";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
+// Google Fonts
+import { Open_Sans } from "next/font/google";
+import { Zen_Maru_Gothic } from "next/font/google";
+
+const openSans = Open_Sans({
+  weight: ["400", "800"],
+  subsets: ["latin"],
+  variable: "--font-open-sans",
+});
+
+const zenMaru = Zen_Maru_Gothic({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-zen-maru",
+});
+
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -18,7 +34,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "var(--font-geist-sans), Arial, sans-serif",
+    fontFamily: "var(--font-open-sans), Arial, sans-serif",
   },
 });
 

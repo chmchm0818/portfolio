@@ -34,7 +34,6 @@ export const animateTitle = () => {
 
 // ヘッダーとスクロールインジケーターのフェードインアニメーション
 export const animateUI = () => {
-  console.log("🚀 animateUI を実行！");
 
   const header = document.querySelector(".header");
   const scrollIndicator = document.querySelector(".scroll-indicator");

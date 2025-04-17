@@ -1,17 +1,20 @@
 import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import Rating from '@mui/material/Rating';
+import { styled } from "@mui/material/styles";
+import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { animateTitle, animateUI } from "../ts/animation";
 import ScrollIndicator from "../components/Animated";
+import Footer from "../components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const CustomRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
+    color: '#000',
+  },
+  '& .MuiRating-iconEmpty': {
+    color: '#ccc',
+  },
 });
 
 export default function Home() {
@@ -32,13 +35,13 @@ export default function Home() {
       <header className="header fixed top-10 right-10 opacity-0 transition-opacity duration-1000">
         <ul className="flex flex-col items-end gap-3">
           <li>
-            <a href="#" className="text-lg font-medium">
-              HOME
+            <a href="#" className="text-lg font-[500]">
+              PROFILE
             </a>
           </li>
           <li>
             <a href="#" className="text-lg font-medium">
-              ABOUT
+              SKILL
             </a>
           </li>
           <li>
@@ -52,10 +55,10 @@ export default function Home() {
       <main>
         <section className="relative">
           <div className="w-full h-screen flex flex-col justify-center">
-            <h1 className="title-1 animated-text text-[170px] font-black leading-[1.2] opacity-0">
+            <h1 className="title-1 animated-text text-[170px] font-black tracking-wide leading-[1.2] opacity-0">
               MOE's
             </h1>
-            <h1 className="title-2 animated-text text-[170px] font-black leading-[1.2] opacity-0">
+            <h1 className="title-2 animated-text text-[170px] font-black tracking-wide leading-[1.2] opacity-0">
               PORTFOLIO
             </h1>
           </div>
@@ -65,10 +68,263 @@ export default function Home() {
             </div>
           )}
         </section>
-        <section>
-          <h2>ABOUT</h2>
+        <section className="my-20">
+          <h2 className="text-5xl font-extrabold tracking-wide text-center my-10">PROFILE</h2>
+          <div className="max-w-5xl m-auto flex items-start gap-20">
+            <Image
+              src="/image/profile.png"
+              alt="Profile Image"
+              width={300}
+              height={300}
+              className="rounded-full shadow-lg object-cover">
+            </Image>
+            <div>
+              <p className="font-[500] leading-[1.8]">永瀬萌（ながせもえ）と申します。</p>
+              <p className="font-[500] leading-[1.8]">新卒でIT企業に就職し、フロントエンドエンジニアとして主にWeb開発に約1年間携わりました。</p>
+            </div>
+          </div>
+        </section>
+        <section className="my-20 skill--section">
+          <h2 className="text-5xl font-extrabold tracking-wide text-center my-10">SKILL</h2>
+          <p className="text-center">フロントエンド中心に技術習得に励んでおります。</p>
+          <div className="max-w-5xl m-auto">
+            <h3 className="text-3xl font-extrabold text-center my-10">FRONT-END</h3>
+            <ul className="flex flex-wrap">
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/html.svg" alt="html logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">HTML5</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={5} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：4年</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/css.svg" alt="css logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">CSS3</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={5} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：4年</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/javascript.svg" alt="js logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">JavaScript</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={4} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：4年</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/typescript.svg" alt="ts logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">TypeScript</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={1} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：1年</p>
+                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/react.svg" alt="react logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">React</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={2} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：2年</p>
+                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/vitejs.svg" alt="vite logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">Vite</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={1} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：1年</p>
+                  <p className="leading-[1.8]">アプリ開発で使用しました。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/expo.svg" alt="tailwind css logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">Expo</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={2} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：1年</p>
+                  <p className="leading-[1.8]">Web開発で使用しました。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/next-js.svg" alt="next js logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">Next.js</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={1} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：1年</p>
+                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/sass.svg" alt="sass logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">Sass</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={4} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：3年</p>
+                  <p className="leading-[1.8]">Webサイト制作にて使用経験ございます。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/tailwind-css.svg" alt="tailwind css logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">Tailwind CSS</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={2} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：1年</p>
+                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/material-ui.svg" alt="tailwind css logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">Material UI</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={1} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：1年</p>
+                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                </div>
+              </li>
+            </ul>
+            <h3 className="text-3xl font-extrabold text-center my-10">BACK-END</h3>
+            <ul className="flex flex-wrap">
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/php.svg" alt="php logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">PHP</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={2} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：2年</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/laravel.svg" alt="php logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">Laravel</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={2} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：1年</p>
+                  <p className="leading-[1.8]">Web開発にて実務経験ございます。</p>
+                </div>
+              </li>
+            </ul>
+            <h3 className="text-3xl font-extrabold text-center my-10">TOOL</h3>
+            <ul className="flex flex-wrap">
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/github.svg" alt="github logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">GitHub</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={3} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：2年</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                </div>
+              </li>
+              <li className="w-1/2 p-8 flex items-start gap-5">
+                <img src="/image/wordpress.svg" alt="wordpress logo" className="w-[80px] h-auto"/>
+                <div>
+                  <p className="font-bold mb-1">WordPress</p>
+                  <div className="flex mb-1">
+                    <CustomRating name="bw-rating" value={3} readOnly />
+                  </div>
+                  <p className="leading-[1.8]">学習歴：2年</p>
+                  <p className="leading-[1.8]">Wordpressを使用しブランドサイトなどを作成した経験ございます。</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section className="my-20">
+          <h2 className="text-5xl font-extrabold tracking-wide text-center my-10">WORKS</h2>
+          <p className="text-center">過去に作成したWebサイトやアプリケーションなどの作品をご紹介します。</p>
+          <div className="max-w-5xl m-auto">
+            <h3 className="text-3xl font-extrabold text-center my-10">WEB-SITE</h3>
+            <ul className="flex flex-wrap">
+              <li className="group cursor-pointer w-1/3 p-4">
+              <Link href="/works/kiitos" passHref>
+                <Card sx={{ maxWidth: 320, overflow: "hidden", }}>
+                  <Box className="overflow-hidden">
+                    <CardMedia
+                      sx={{ height: 200}}
+                      className="transform transition-transform duration-300 ease-in-out group-hover:scale-110"
+                      image="/image/ancolo_cafe.webp"
+                      title="kiitos web site"
+                    />
+                  </Box>
+                  <CardContent className="bg-white">
+                    <p className="text-lg font-bold mb-2">ポートフォリオサイト</p>
+                    <p>自分の作品など作ってきたものをまとめるために作成いたしました。</p>
+                    <div className="flex justify-end gap-1 pt-3">
+                      <img src="/image/react.svg" alt="react logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
+                      <img src="/image/typescript.svg" alt="typescript logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
+                      <img src="/image/next-js.svg" alt="next js logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
+                      <img src="/image/tailwind-css.svg" alt="tailwind css logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
+                    </div>
+                  </CardContent>
+                </Card>
+                </Link>
+              </li>
+              <li className="group cursor-pointer w-1/3 p-4">
+              <Link href="/works/kiitos" passHref>
+                <Card sx={{ maxWidth: 320, overflow: "hidden", }}>
+                  <Box className="overflow-hidden">
+                    <CardMedia
+                      sx={{ height: 200}}
+                      className="transform transition-transform duration-300 ease-in-out group-hover:scale-110"
+                      image="/image/ancolo_cafe.webp"
+                      title="kiitos web site"
+                    />
+                  </Box>
+                  <CardContent className="bg-white">
+                    <p className="text-lg font-bold mb-2">キートス合同会社公式サイト</p>
+                    <p>キートス合同会社の公式サイトです。デザインから実装までを行いました。</p>
+                    <div className="flex justify-end gap-1 pt-3">
+                      <img src="/image/html.svg" alt="html logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
+                      <img src="/image/sass.svg" alt="sass logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
+                      <img src="/image/javascript.svg" alt="javascript logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
+                      <img src="/image/wordpress.svg" alt="wordpress logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
+                    </div>
+                  </CardContent>
+                </Card>
+                </Link>
+              </li>
+            </ul>
+            <h3 className="text-3xl font-extrabold text-center my-10">OTHER</h3>
+            <ul className="flex flex-wrap"></ul>
+          </div>
         </section>
       </main>
+<Footer />
     </>
   );
 }

@@ -11,8 +11,8 @@ const scrollAnim = keyframes`
 
 // スタイル付きコンポーネント
 const AnimatedLine = styled("span")({
-  width: "2px",
-  height: "100px",
+  width: "1px",
+  height: "80px",
   backgroundColor: "black",
   display: "block",
   animation: `${scrollAnim} 2s infinite ease-in-out`,
