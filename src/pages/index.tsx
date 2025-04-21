@@ -1,9 +1,19 @@
-import Image from "next/image";
-import Link from "next/link";
+// 外部ライブラリ
 import { useEffect, useState } from "react";
-import Rating from '@mui/material/Rating';
+import Link from "next/link";
+import Image from "next/image";
+
+// MUI
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
+import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+
+// 自作モジュール
 import { animateTitle, animateUI } from "../ts/animation";
 import ScrollIndicator from "../components/Animated";
 import Footer from "../components/Footer";
@@ -32,33 +42,32 @@ export default function Home() {
 
   return (
     <>
-      <header className="header fixed top-10 right-10 opacity-0 transition-opacity duration-1000">
+      <main>
+      <header className="header fixed top-10 right-10 opacity-0 transition-opacity duration-1000 z-100">
         <ul className="flex flex-col items-end gap-3">
           <li>
-            <a href="#" className="text-lg font-[500]">
+            <a href="#profile" className="text-lg font-[500]">
               PROFILE
             </a>
           </li>
           <li>
-            <a href="#" className="text-lg font-medium">
+            <a href="#skill" className="text-lg font-medium">
               SKILL
             </a>
           </li>
           <li>
-            <a href="#" className="text-lg font-medium">
+            <a href="#works" className="text-lg font-medium">
               WORKS
             </a>
           </li>
         </ul>
       </header>
-
-      <main>
         <section className="relative">
           <div className="w-full h-screen flex flex-col justify-center">
-            <h1 className="title-1 animated-text text-[170px] font-black tracking-wide leading-[1.2] opacity-0">
+            <h1 className="title-1 animated-text text-[60px] sm:text-[90px] md:text-[130px] lg:text-[170px] font-black tracking-wide leading-[1.2] opacity-0">
               MOE's
             </h1>
-            <h1 className="title-2 animated-text text-[170px] font-black tracking-wide leading-[1.2] opacity-0">
+            <h1 className="title-2 animated-text text-[60px] sm:text-[90px] md:text-[130px] lg:text-[170px] font-black tracking-wide leading-[1.2] opacity-0">
               PORTFOLIO
             </h1>
           </div>
@@ -68,9 +77,9 @@ export default function Home() {
             </div>
           )}
         </section>
-        <section className="my-20">
+        <section id="profile" className="my-20">
           <h2 className="text-5xl font-extrabold tracking-wide text-center my-10">PROFILE</h2>
-          <div className="max-w-5xl m-auto flex items-start gap-20">
+          <div className="max-w-5xl m-auto flex flex-col items-center md:flex-row md:items-start gap-10 md:gap-20 px-8">
             <Image
               src="/image/profile.png"
               alt="Profile Image"
@@ -84,13 +93,13 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="my-20 skill--section">
+        <section id="skill" className="my-20 skill--section">
           <h2 className="text-5xl font-extrabold tracking-wide text-center my-10">SKILL</h2>
           <p className="text-center">フロントエンド中心に技術習得に励んでおります。</p>
-          <div className="max-w-5xl m-auto">
+          <div className="md:max-w-3xl lg:max-w-5xl m-auto">
             <h3 className="text-3xl font-extrabold text-center my-10">FRONT-END</h3>
-            <ul className="flex flex-wrap">
-              <li className="w-1/2 p-8 flex items-start gap-5">
+            <ul className="flex flex-col md:flex-row md:flex-wrap">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/html.svg" alt="html logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">HTML5</p>
@@ -101,7 +110,7 @@ export default function Home() {
                   <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/css.svg" alt="css logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">CSS3</p>
@@ -112,7 +121,7 @@ export default function Home() {
                   <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/javascript.svg" alt="js logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">JavaScript</p>
@@ -123,7 +132,7 @@ export default function Home() {
                   <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/typescript.svg" alt="ts logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">TypeScript</p>
@@ -134,7 +143,7 @@ export default function Home() {
                   <p className="leading-[1.8]">絶賛独学中です。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/react.svg" alt="react logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">React</p>
@@ -145,7 +154,7 @@ export default function Home() {
                   <p className="leading-[1.8]">絶賛独学中です。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/vitejs.svg" alt="vite logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">Vite</p>
@@ -156,7 +165,7 @@ export default function Home() {
                   <p className="leading-[1.8]">アプリ開発で使用しました。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/expo.svg" alt="tailwind css logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">Expo</p>
@@ -167,7 +176,7 @@ export default function Home() {
                   <p className="leading-[1.8]">Web開発で使用しました。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/next-js.svg" alt="next js logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">Next.js</p>
@@ -178,7 +187,7 @@ export default function Home() {
                   <p className="leading-[1.8]">絶賛独学中です。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/sass.svg" alt="sass logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">Sass</p>
@@ -189,7 +198,7 @@ export default function Home() {
                   <p className="leading-[1.8]">Webサイト制作にて使用経験ございます。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/tailwind-css.svg" alt="tailwind css logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">Tailwind CSS</p>
@@ -200,7 +209,7 @@ export default function Home() {
                   <p className="leading-[1.8]">絶賛独学中です。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/material-ui.svg" alt="tailwind css logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">Material UI</p>
@@ -213,8 +222,8 @@ export default function Home() {
               </li>
             </ul>
             <h3 className="text-3xl font-extrabold text-center my-10">BACK-END</h3>
-            <ul className="flex flex-wrap">
-              <li className="w-1/2 p-8 flex items-start gap-5">
+            <ul className="flex flex-col md:flex-row md:flex-wrap">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/php.svg" alt="php logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">PHP</p>
@@ -225,7 +234,7 @@ export default function Home() {
                   <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/laravel.svg" alt="php logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">Laravel</p>
@@ -238,8 +247,8 @@ export default function Home() {
               </li>
             </ul>
             <h3 className="text-3xl font-extrabold text-center my-10">TOOL</h3>
-            <ul className="flex flex-wrap">
-              <li className="w-1/2 p-8 flex items-start gap-5">
+            <ul className="flex flex-col md:flex-row md:flex-wrap">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/github.svg" alt="github logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">GitHub</p>
@@ -250,7 +259,7 @@ export default function Home() {
                   <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
                 </div>
               </li>
-              <li className="w-1/2 p-8 flex items-start gap-5">
+              <li className="md:w-1/2 p-8 flex items-start gap-5">
                 <img src="/image/wordpress.svg" alt="wordpress logo" className="w-[80px] h-auto"/>
                 <div>
                   <p className="font-bold mb-1">WordPress</p>
@@ -264,24 +273,25 @@ export default function Home() {
             </ul>
           </div>
         </section>
-        <section className="my-20">
+        <section id="works" className="my-20">
           <h2 className="text-5xl font-extrabold tracking-wide text-center my-10">WORKS</h2>
-          <p className="text-center">過去に作成したWebサイトやアプリケーションなどの作品をご紹介します。</p>
+          <p className="text-center px-8">過去に作成したWebサイトやアプリケーションなどの作品をご紹介します。</p>
           <div className="max-w-5xl m-auto">
             <h3 className="text-3xl font-extrabold text-center my-10">WEB-SITE</h3>
-            <ul className="flex flex-wrap">
-              <li className="group cursor-pointer w-1/3 p-4">
+            <ul className="flex flex-col md:flex-row items-center md:items-stretch md:flex-wrap">
+              <li className="group cursor-pointer md:w-1/3 p-4">
               <Link href="/works/kiitos" passHref>
-                <Card sx={{ maxWidth: 320, overflow: "hidden", }}>
+                <Card sx={{ maxWidth: 320, overflow: "hidden", }}
+                className="h-full flex flex-col">
                   <Box className="overflow-hidden">
                     <CardMedia
                       sx={{ height: 200}}
                       className="transform transition-transform duration-300 ease-in-out group-hover:scale-110"
-                      image="/image/ancolo_cafe.webp"
-                      title="kiitos web site"
+                      image="/image/portfolio-site.webp"
+                      title="portfolio web site"
                     />
                   </Box>
-                  <CardContent className="bg-white">
+                  <CardContent className="bg-white flex-1 flex flex-col justify-between">
                     <p className="text-lg font-bold mb-2">ポートフォリオサイト</p>
                     <p>自分の作品など作ってきたものをまとめるために作成いたしました。</p>
                     <div className="flex justify-end gap-1 pt-3">
@@ -294,18 +304,19 @@ export default function Home() {
                 </Card>
                 </Link>
               </li>
-              <li className="group cursor-pointer w-1/3 p-4">
+              <li className="group cursor-pointer md:w-1/3 p-4">
               <Link href="/works/kiitos" passHref>
-                <Card sx={{ maxWidth: 320, overflow: "hidden", }}>
+                <Card sx={{ maxWidth: 320, overflow: "hidden", }}
+                className="h-full flex flex-col">
                   <Box className="overflow-hidden">
                     <CardMedia
                       sx={{ height: 200}}
                       className="transform transition-transform duration-300 ease-in-out group-hover:scale-110"
-                      image="/image/ancolo_cafe.webp"
+                      image="/image/kiitos-site.webp"
                       title="kiitos web site"
                     />
                   </Box>
-                  <CardContent className="bg-white">
+                  <CardContent className="bg-white flex-1 flex flex-col justify-between">
                     <p className="text-lg font-bold mb-2">キートス合同会社公式サイト</p>
                     <p>キートス合同会社の公式サイトです。デザインから実装までを行いました。</p>
                     <div className="flex justify-end gap-1 pt-3">
