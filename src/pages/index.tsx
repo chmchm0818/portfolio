@@ -74,7 +74,7 @@ export default function Home() {
         <section className="relative">
           <div className="w-full h-screen flex flex-col justify-center">
             <h1 className="title-1 animated-text text-[60px] sm:text-[90px] md:text-[130px] lg:text-[170px] font-black tracking-wide leading-[1.2] opacity-0">
-              MOE's
+              MOE&apos;s
             </h1>
             <h1 className="title-2 animated-text text-[60px] sm:text-[90px] md:text-[130px] lg:text-[170px] font-black tracking-wide leading-[1.2] opacity-0">
               PORTFOLIO
