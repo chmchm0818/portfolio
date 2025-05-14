@@ -1,6 +1,5 @@
 // 外部ライブラリ
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 // MUI
@@ -17,6 +16,9 @@ import { styled } from "@mui/material/styles";
 import { animateTitle, animateUI } from "../ts/animation";
 import ScrollIndicator from "../components/Animated";
 import Footer from "../components/Footer";
+import WorksModal from "@/components/Modal";
+import { projects } from "@/ts/works";
+import { Project } from "@/ts/types";
 
 const CustomRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -40,23 +42,30 @@ export default function Home() {
     });
   }, []);
 
+  // モーダル
+
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const handleOpen = (project: Project) => setSelectedProject(project);
+  const handleClose = () => setSelectedProject(null);
+  
+
   return (
     <>
       <main>
-      <header className="header fixed top-10 right-10 opacity-0 transition-opacity duration-1000 z-100">
-        <ul className="flex flex-col items-end gap-3">
+      <header className="header fixed top-10 right-6 md:right-10 opacity-0 transition-opacity duration-1000 z-100">
+        <ul className="flex flex-col items-end gap-2 md:gap-3">
           <li>
-            <a href="#profile" className="text-lg font-[500]">
+            <a href="#profile" className="md:text-lg font-[500]">
               PROFILE
             </a>
           </li>
           <li>
-            <a href="#skill" className="text-lg font-medium">
+            <a href="#skill" className="md:text-lg font-medium">
               SKILL
             </a>
           </li>
           <li>
-            <a href="#works" className="text-lg font-medium">
+            <a href="#works" className="md:text-lg font-medium">
               WORKS
             </a>
           </li>
@@ -78,23 +87,24 @@ export default function Home() {
           )}
         </section>
         <section id="profile" className="my-20">
-          <h2 className="text-5xl font-extrabold tracking-wide text-center my-10">PROFILE</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-wide text-center my-10">PROFILE</h2>
           <div className="max-w-5xl m-auto flex flex-col items-center md:flex-row md:items-start gap-10 md:gap-20 px-8">
             <Image
-              src="/image/profile.png"
+              src="/image/profile.webp"
               alt="Profile Image"
-              width={300}
-              height={300}
-              className="rounded-full shadow-lg object-cover">
+              width={250}
+              height={250}
+              className="w-40 h-40 md:w-[250px] md:h-[250px] rounded-full shadow-lg object-cover">
             </Image>
             <div>
               <p className="font-[500] leading-[1.8]">永瀬萌（ながせもえ）と申します。</p>
+              <p className="font-[500] leading-[1.8]">WEB系の専門学校に入学し、2年間Web制作について学びました。</p>
               <p className="font-[500] leading-[1.8]">新卒でIT企業に就職し、フロントエンドエンジニアとして主にWeb開発に約1年間携わりました。</p>
             </div>
           </div>
         </section>
         <section id="skill" className="my-20 skill--section">
-          <h2 className="text-5xl font-extrabold tracking-wide text-center my-10">SKILL</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-wide text-center my-10">SKILL</h2>
           <p className="text-center">フロントエンド中心に技術習得に励んでおります。</p>
           <div className="md:max-w-3xl lg:max-w-5xl m-auto">
             <h3 className="text-3xl font-extrabold text-center my-10">FRONT-END</h3>
@@ -107,7 +117,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={5} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：4年</p>
-                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験があります。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -118,7 +128,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={5} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：4年</p>
-                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験があります。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -129,7 +139,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={4} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：4年</p>
-                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験があります。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -140,7 +150,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={1} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：1年</p>
-                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                  <p className="leading-[1.8]">絶賛勉強中です。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -151,7 +161,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={2} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：2年</p>
-                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                  <p className="leading-[1.8]">絶賛勉強中です。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -184,7 +194,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={1} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：1年</p>
-                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                  <p className="leading-[1.8]">絶賛勉強中です。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -195,7 +205,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={4} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：3年</p>
-                  <p className="leading-[1.8]">Webサイト制作にて使用経験ございます。</p>
+                  <p className="leading-[1.8]">Webサイト制作にて使用経験があります。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -206,7 +216,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={2} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：1年</p>
-                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                  <p className="leading-[1.8]">絶賛勉強中です。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -217,7 +227,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={1} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：1年</p>
-                  <p className="leading-[1.8]">絶賛独学中です。</p>
+                  <p className="leading-[1.8]">絶賛勉強中です。</p>
                 </div>
               </li>
             </ul>
@@ -231,7 +241,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={2} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：2年</p>
-                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験があります。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -242,7 +252,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={2} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：1年</p>
-                  <p className="leading-[1.8]">Web開発にて実務経験ございます。</p>
+                  <p className="leading-[1.8]">Web開発にて実務経験があります。</p>
                 </div>
               </li>
             </ul>
@@ -256,7 +266,7 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={3} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：2年</p>
-                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験ございます。</p>
+                  <p className="leading-[1.8]">学生時代から学んでおり、実務経験があります。</p>
                 </div>
               </li>
               <li className="md:w-1/2 p-8 flex items-start gap-5">
@@ -267,71 +277,53 @@ export default function Home() {
                     <CustomRating name="bw-rating" value={3} readOnly />
                   </div>
                   <p className="leading-[1.8]">学習歴：2年</p>
-                  <p className="leading-[1.8]">Wordpressを使用しブランドサイトなどを作成した経験ございます。</p>
+                  <p className="leading-[1.8]">Wordpressを使用しブランドサイトなどを作成した経験があります。</p>
                 </div>
               </li>
             </ul>
           </div>
         </section>
         <section id="works" className="my-20">
-          <h2 className="text-5xl font-extrabold tracking-wide text-center my-10">WORKS</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-wide text-center my-10">WORKS</h2>
           <p className="text-center px-8">過去に作成したWebサイトやアプリケーションなどの作品をご紹介します。</p>
-          <div className="max-w-5xl m-auto">
-            <h3 className="text-3xl font-extrabold text-center my-10">WEB-SITE</h3>
-            <ul className="flex flex-col md:flex-row items-center md:items-stretch md:flex-wrap">
-              <li className="group cursor-pointer md:w-1/3 p-4">
-              <Link href="/works/kiitos" passHref>
-                <Card sx={{ maxWidth: 320, overflow: "hidden", }}
-                className="h-full flex flex-col">
-                  <Box className="overflow-hidden">
-                    <CardMedia
-                      sx={{ height: 200}}
-                      className="transform transition-transform duration-300 ease-in-out group-hover:scale-110"
-                      image="/image/portfolio-site.webp"
-                      title="portfolio web site"
-                    />
-                  </Box>
-                  <CardContent className="bg-white flex-1 flex flex-col justify-between">
-                    <p className="text-lg font-bold mb-2">ポートフォリオサイト</p>
-                    <p>自分の作品など作ってきたものをまとめるために作成いたしました。</p>
-                    <div className="flex justify-end gap-1 pt-3">
-                      <img src="/image/react.svg" alt="react logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
-                      <img src="/image/typescript.svg" alt="typescript logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
-                      <img src="/image/next-js.svg" alt="next js logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
-                      <img src="/image/tailwind-css.svg" alt="tailwind css logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
-                    </div>
-                  </CardContent>
-                </Card>
-                </Link>
-              </li>
-              <li className="group cursor-pointer md:w-1/3 p-4">
-              <Link href="/works/kiitos" passHref>
-                <Card sx={{ maxWidth: 320, overflow: "hidden", }}
-                className="h-full flex flex-col">
-                  <Box className="overflow-hidden">
-                    <CardMedia
-                      sx={{ height: 200}}
-                      className="transform transition-transform duration-300 ease-in-out group-hover:scale-110"
-                      image="/image/kiitos-site.webp"
-                      title="kiitos web site"
-                    />
-                  </Box>
-                  <CardContent className="bg-white flex-1 flex flex-col justify-between">
-                    <p className="text-lg font-bold mb-2">キートス合同会社公式サイト</p>
-                    <p>キートス合同会社の公式サイトです。デザインから実装までを行いました。</p>
-                    <div className="flex justify-end gap-1 pt-3">
-                      <img src="/image/html.svg" alt="html logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
-                      <img src="/image/sass.svg" alt="sass logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
-                      <img src="/image/javascript.svg" alt="javascript logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
-                      <img src="/image/wordpress.svg" alt="wordpress logo" className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"/>
-                    </div>
-                  </CardContent>
-                </Card>
-                </Link>
-              </li>
-            </ul>
-            <h3 className="text-3xl font-extrabold text-center my-10">OTHER</h3>
-            <ul className="flex flex-wrap"></ul>
+          <div className="max-w-5xl m-auto mt-10">
+            <>
+              <ul className="flex flex-col md:flex-row items-center md:items-stretch md:flex-wrap">
+                {projects.map((project) => (
+                  <li
+                    key={project.id}
+                    className="group cursor-pointer md:w-1/3 p-4"
+                    onClick={() => handleOpen(project)}
+                  >
+                    <Card sx={{ maxWidth: 320, overflow: "hidden" }} className="h-full flex flex-col">
+                      <Box className="overflow-hidden">
+                        <CardMedia
+                          sx={{ height: 200 }}
+                          className="transform transition-transform duration-300 ease-in-out group-hover:scale-110"
+                          image={project.image}
+                          title={project.title}
+                        />
+                      </Box>
+                      <CardContent className="bg-white flex-1 flex flex-col justify-between">
+                        <p className="text-lg font-bold mb-2">{project.title}</p>
+                        <p>{project.description}</p>
+                        <div className="flex justify-end gap-1 pt-3">
+                          {project.tech.map((techItem, i) => (
+                            <img
+                              key={i}
+                              src={techItem.src}
+                              alt={techItem.alt}
+                              className="w-[25px] h-[25px] rounded-full shadow-lg object-cover"
+                            />
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </li>
+                ))}
+              </ul>
+              <WorksModal open={!!selectedProject} onClose={handleClose} project={selectedProject} />
+            </>
           </div>
         </section>
       </main>
