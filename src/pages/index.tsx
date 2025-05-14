@@ -97,9 +97,9 @@ export default function Home() {
               className="w-40 h-40 md:w-[250px] md:h-[250px] rounded-full shadow-lg object-cover">
             </Image>
             <div>
-              <p className="font-[500] leading-[1.8]">永瀬萌（ながせもえ）と申します。</p>
-              <p className="font-[500] leading-[1.8]">WEB系の専門学校に入学し、2年間Web制作について学びました。</p>
-              <p className="font-[500] leading-[1.8]">新卒でIT企業に就職し、フロントエンドエンジニアとして主にWeb開発に約1年間携わりました。</p>
+              <p className="leading-[1.8]">永瀬萌（ながせもえ）と申します。</p>
+              <p className="leading-[1.8]">WEB系の専門学校に入学し、2年間Web制作について学びました。</p>
+              <p className="leading-[1.8]">新卒でIT企業に就職し、フロントエンドエンジニアとして主にWeb開発に約1年間携わりました。</p>
             </div>
           </div>
         </section>

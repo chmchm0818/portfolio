@@ -11,7 +11,7 @@ export const projects: Project[] = [
         image: "/image/portfolio-site.webp",
         period: "1ヶ月",
         flow: "構成 〉デザイン 〉開発",
-        siteUrl: "https://example.com/",
+        siteUrl: "https://portfolio-p4ofg9qzi-chmchms-projects.vercel.app/",
         colors: ["#e6e6e6", "#171717", "#ffffff"],
         tech: [
           { src: "/image/react.svg", alt: "react logo" },
